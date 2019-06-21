@@ -12,12 +12,12 @@
 #
 #   Output of Horus UDP packets is enabled using the payload_summary_enabled option in the config file.
 #   See here for information: https://github.com/projecthorus/radiosonde_auto_rx/wiki/Configuration-Settings#payload-summary-output
-#   By default these messages are emitted on port 55672, but this can be changed.
+#   By default (from version auro_rx 1.1.2) these messages are emitted on port 55673, but this can be changed.
 #
 #   You can start the script and watch some output to the screen or start it as script to the background and direct output to dev null
 #
 #   Version 0.0.1 - june 2019 - Danny Terweij
-#
+#   Forked version 0.0.2 - june 2019 - Martin Šturcel (mpca86)
 
 import datetime
 import json
@@ -47,6 +47,7 @@ dbhost = '192.168.0.91'
 dbuser = 'autorx'
 dbpass = 'f6vrpyqwjxaogW7J'
 dbname = 'autorx'
+dbport = 3313
 
 #
 # End Config
@@ -164,7 +165,7 @@ class UDPListener(object):
         callback=None,
         summary_callback = None,
         gps_callback = None,
-        port=55672):
+        port=55673):
 
         self.udp_port = port
         self.callback = callback
@@ -326,7 +327,7 @@ def handle_payload_summary(packet):
 
     # MySQL processing
     # Needs a error catching
-    con = db.connect(host=dbhost, user=dbuser, passwd=dbpass, db=dbname)
+    con = db.connect(host=dbhost, user=dbuser, passwd=dbpass, db=dbname, port=dbport)
 
     # Check table sondedata to see if we have a new sonde or sonde to be updated.
     query = con.cursor(db.cursors.DictCursor)
@@ -374,7 +375,7 @@ if __name__ == '__main__':
 
     # Instantiate the UDP listener.
     udp_rx = UDPListener(
-        port=55672,
+        port=55673,
         callback = handle_payload_summary
         )
     # and start it
