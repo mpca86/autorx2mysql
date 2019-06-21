@@ -1,5 +1,8 @@
 <?php
 
+define("_UPDATEIN", "Aktualizácia údajov za");
+define("_SECONDS", "Sekúnd");
+define("_LASTSONDE", "Posledná sonda");
 define("_LASTDATE", "Posledný čas");
 define("_STATION", "Stanica");
 define("_CALLSIGN", "Volacia značka");
@@ -7,6 +10,7 @@ define("_TIME", "Čas");
 define("_FREQUENCY", "Frekvencia");
 define("_LAT", "Zemepisná šírka");
 define("_LON", "Zemepisná dĺžka");
+define("_SATELITES", "Satelity");
 define("_ALTITUDE", "Výška (m)");
 define("_DIRECTION", "Smer");
 define("_DISTANCE", "Vzdialenosť (km)");
