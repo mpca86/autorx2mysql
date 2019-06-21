@@ -11,7 +11,7 @@ class MyDb {
     public function connect() {    
         // Try and connect to the database
         if(!isset(self::$connection)) {
-              self::$connection = new mysqli('192.168.0.91','autorx','f6vrpyqwjxaogW7J','autorx');
+              self::$connection = new mysqli('mariadb103.websupport.sk:3313','vqlmu983','Yg5P5T>|V~','vqlmu983');
         }
 
         // If connection was not successful, handle the error

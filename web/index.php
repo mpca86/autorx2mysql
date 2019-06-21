@@ -13,8 +13,10 @@ include("db_data.php");
 <!DOCTYPE html>
 <html>
 <head>
-<title>SondeData</title>
+<title>Meteosondy - AMS.sk</title>
 <meta charset="utf-8" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Post Script-->
@@ -32,17 +34,11 @@ include("db_data.php");
   document.getElementById('form_lang').submit();
  }
  </script>
- <!-- Language -->
- <form method='get' action='' id='form_lang' >
-   Select Language : <select name='lang' onchange='changeLang();' >
-   <option value='eng' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'eng'){ echo "selected"; } ?> >English</option>
-   <option value='svk' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'svk'){ echo "selected"; } ?> >Slovak</option>
-  </select>
- </form>
 <!-- Wrapper -->
 <div id="container"> 
   <!-- Header -->
-  <div id="header"><?php include("header.php"); ?></div>
+  <div id="header"><?php include("header.php"); ?>
+</div>
   <!-- Main -->
   <div id="body"> 
   <!-- Data that automaticly refreshes--> 

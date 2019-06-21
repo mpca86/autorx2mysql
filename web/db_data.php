@@ -111,6 +111,21 @@ echo '</table>';
 
 }
 
+function MapSondes($si) {
+global $dbt;
+
+$result = $dbt -> getlatestSondes($si);
+$sondes = count($result); 
+
+echo '<div id="mapid" style="width: 100%; height: 600px;"></div>';
+echo '<script>var mymap = L.map(\'mapid\').setView([48.2, 19.8], 8); L.tileLayer(\'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibXBjYTg2IiwiYSI6ImNqbnc0c3Y5MDAzbnAzd21nZzhtNHByMTYifQ.nVQ13UWAxkBpbyGZPmXKmw\', {maxZoom: 15, attribution: \'© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> \',	id: \'mapbox.outdoors\'	}).addTo(mymap);';
+for ($i = 0; $i <= ( $sondes - 1 ); $i++) {
+echo "L.marker([" . $result[$i]['lat']. ", " . $result[$i]['lon'] . "]).addTo(mymap)\r\n
+                .bindPopup(\"<b>" . $result[$i]['callsign'] . "</b><br />Teplota: " . $result[$i]['temp'] . "°C<br />Vlhkosť: " . $result[$i]['hum'] . "%<br />Výška: " . $result[$i]['alt'] . " m<br />Batérie: " . $result[$i]['batt'] . " V<br />Smer: ". $result[$i]['direction'] . "<br />Čas merania: " . $result[$i]['last_date'] . " \" )\r\n";
+}
+echo '</script>';
+}
+
 // Alt
 function MaxAlt() {
 global $dbt;
