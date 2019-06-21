@@ -42,12 +42,12 @@ mylat = 52.789575
 mylon = 6.124768
 myalt = 9.0
 
-# Database
+# Database (Default port is 3306, you can change this)
 dbhost = '192.168.0.91'
 dbuser = 'autorx'
 dbpass = 'f6vrpyqwjxaogW7J'
 dbname = 'autorx'
-dbport = 3313
+dbport = 3306
 
 #
 # End Config
