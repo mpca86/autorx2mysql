@@ -12,12 +12,12 @@
 #
 #   Output of Horus UDP packets is enabled using the payload_summary_enabled option in the config file.
 #   See here for information: https://github.com/projecthorus/radiosonde_auto_rx/wiki/Configuration-Settings#payload-summary-output
-#   By default (from version auro_rx 1.1.2) these messages are emitted on port 55673, but this can be changed.
+#   By default these messages are emitted on port 55672, but this can be changed.
 #
 #   You can start the script and watch some output to the screen or start it as script to the background and direct output to dev null
 #
 #   Version 0.0.1 - june 2019 - Danny Terweij
-#   Forked version 0.0.2 - june 2019 - Martin Šturcel (mpca86)
+#
 
 import datetime
 import json
@@ -42,12 +42,12 @@ mylat = 52.789575
 mylon = 6.124768
 myalt = 9.0
 
-# Database (Default port is 3306, you can change this)
-dbhost = '192.168.0.91'
-dbuser = 'autorx'
-dbpass = 'f6vrpyqwjxaogW7J'
-dbname = 'autorx'
-dbport = 3306
+# Database
+dbhost = 'mariadb103.websupport.sk'
+dbport = 3313
+dbuser = 'vqlmu983'
+dbpass = 'Yg5P5T>|V~'
+dbname = 'vqlmu983'
 
 #
 # End Config
@@ -356,6 +356,14 @@ def handle_payload_summary(packet):
         query.execute(sql, ( _station, _callsign, _time, _alt, _lat, _lon, _temp, _freq, _frame, _sats, _batt, _bt, _speed, _model, _distance, _direction, _comment, _evel, _bear, _hum, ))
         con.commit()
 
+        # Table sondedata
+        # This table will be updated with latest data from a sonde
+        sql = " \
+        INSERT INTO alldata ( station, callsign, time, alt, lat, lon, temp, freq, frame, sats, batt, bt, speed, model, distance, direction, comment, evel, bear, hum ) \
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        query.execute(sql, ( _station, _callsign, _time, _alt, _lat, _lon, _temp, _freq, _frame, _sats, _batt, _bt, _speed, _model, _distance, _direction, _comment, _evel, _bear, _hum, ))
+        con.commit()
+
     elif ( (record['callsign'] == _callsign and record['station'] == _station) ):
         # Update record
         _id = record['id']
@@ -367,6 +375,14 @@ def handle_payload_summary(packet):
         SET time=%s, alt=%s, lat=%s, lon=%s, temp=%s, freq=%s, frame=%s, sats=%s, batt=%s, bt=%s, speed=%s, model=%s, distance=%s, direction=%s, comment=%s, evel=%s, bear=%s, hum=%s \
         WHERE id=%s"
         query.execute(sql, ( _time, _alt, _lat, _lon, _temp, _freq, _frame, _sats, _batt, _bt, _speed, _model, _distance, _direction, _comment, _evel, _bear, _hum, _id, ))
+        con.commit()
+
+        # Table alldata
+        # This table will be updated with latest data from a sonde
+        sql = " \
+        INSERT INTO alldata ( station, callsign, time, alt, lat, lon, temp, freq, frame, sats, batt, bt, speed, model, distance, direction, comment, evel, bear, hum ) \
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        query.execute(sql, ( _station, _callsign, _time, _alt, _lat, _lon, _temp, _freq, _frame, _sats, _batt, _bt, _speed, _model, _distance, _direction, _comment, _evel, _bear, _hum, ))
         con.commit()
 
     con.close()
