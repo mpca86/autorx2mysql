@@ -1,5 +1,13 @@
 <?php
 // Display stuff
+
+// Include Language file
+if(isset($_SESSION['lang'])){
+ include "lang/".$_SESSION['lang'].".php";
+}else{
+ include "lang/svk.php";
+}
+
 ?>
 <script type="text/javascript">
 	var timeleft = 15;
@@ -14,11 +22,11 @@
 </script>
 
 	<div id="display">
-    <span>Update in <span id="countdown">15 </span> Seconds</span>
+    <span><?php echo _UPDATEIN; ?> <span id="countdown">15 </span> <?php echo _SECONDS; ?></span>
     </div>
 
     <div id="display">
-    <h2><span class="title">Last Sonde</span></h2>
+    <h2><span class="title"><?php echo _LASTSONDE; ?></span></h2>
     <span><?php TableLastSonde(1); ?></span>
     </div>
     
