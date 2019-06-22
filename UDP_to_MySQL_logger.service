@@ -1,0 +1,16 @@
+[Unit]
+Description=UDP_to_MySQL_logger
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/python /home/mpca86/radiosonde_auto_rx/auto_rx/UDP_to_MySQL_logger.py
+Restart=always
+RestartSec=120
+WorkingDirectory=/home/mpca86/radiosonde_auto_rx/auto_rx/
+User=mpca86
+SyslogIdentifier=UDP_to_MySQL_logger
+
+[Install]
+WantedBy=multi-user.target
+
+
