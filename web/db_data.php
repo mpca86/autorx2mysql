@@ -79,7 +79,7 @@ echo '</table>';
 }
 
 
-function Tabl($si) {
+function TableLastxRows($si) {
 global $dbt;
 
 $result = $dbt -> getlatestSondesalldata($si);
