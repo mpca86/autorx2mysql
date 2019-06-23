@@ -44,42 +44,6 @@ if(isset($_SESSION['lang'])){
         
     <!-- Alt -->
     <div id="display">
-    <h2><span class="title">Max Alt - Last Seen</span></h2>
-    <span><?php MaxAlt(); ?></span>
+    <h2><span class="title">Latest 20 rows from last sondes</span></h2>
+    <span><?php TableLastxRows(20); ?></span>
     </div>
-    
-    <div id="display">
-    <h2><span class="title">Min Alt - Last Seen</span></h2>
-    <span><?php MinAlt(); ?></span>
-    </div>
-    
-    <div id="display">
-    <h2><span class="title">Max Alt - First Seen</span></h2>
-    <span><?php FirstMaxAlt(); ?></span>
-    </div>
-    
-    <div id="display">
-    <h2><span class="title">Min Alt - First Seen</span></h2>
-    <span><?php FirstMinAlt(); ?></span>
-    </div>
-
-    <!-- Distance -->
-    <div id="display">
-    <h2><span class="title">Max Distance - Last Seen</span></h2>
-    <span><?php MaxDistance(); ?></span>
-    </div>
-    
-    <div id="display">
-    <h2><span class="title">Min Distance - Last Seen</span></h2>
-    <span><?php MinDistance(); ?></span>
-    </div>
-    
-    <div id="display">
-    <h2><span class="title">Max Distance - First Seen</span></h2>
-    <span><?php FirstMaxDistance(); ?></span>
-    </div>
-    
-    <div id="display">
-    <h2><span class="title">Min Distance - First Seen</span></h2>
-    <span><?php FirstMinDistance(); ?></span>
-    </div>    
