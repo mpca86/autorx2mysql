@@ -17,7 +17,7 @@
 #   You can start the script and watch some output to the screen or start it as script to the background and direct output to dev null
 #
 #   Version 0.0.1 - june 2019 - Danny Terweij
-#   Forked version 0.0.2 - june 2019 - Martin Šturcel (mpca86)
+#   Forked version 0.0.2 - june 2019 - Martin Sturcel (mpca86)
 
 import datetime
 import json
