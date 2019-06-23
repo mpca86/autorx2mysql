@@ -78,6 +78,57 @@ for ($i = 0; $i <= ( $sondes - 1 ); $i++) {
 echo '</table>';
 }
 
+$result = $dbt -> getlatestSondesalldata($si);
+$sondes = count($result); 
+
+echo '<table class="blueTable">';
+echo '<thead><tr>';
+echo '<th>' . _LASTDATE . '</th>';
+echo '<th>' . _STATION . '</th>';
+echo '<th>' . _CALLSIGN . '</th>';
+echo '<th>' . _TIME . '</th>';
+echo '<th>' . _FREQUENCY .'</th>';
+echo '<th>' . _LAT .'</th>';
+echo '<th>' . _LON .'</th>';
+echo '<th>' . _SATELITES .'</th>';
+echo '<th>' . _ALTITUDE .'</th>';
+echo '<th>' . _DIRECTION .'</th>';
+echo '<th>' . _DISTANCE .'</th>';
+echo '<th>' . _SPEED .'</th>';
+echo '<th>' . _BT .'</th>';
+echo '<th>' . _TEMPERATURE .'</th>';
+echo '<th>' . _HUMIDITY .'</th>';
+echo '<th>' . _BATTERY .'</th>';
+echo '<th>' . _EVEL .'</th>';
+echo '<th>' . _BEAR .'</th>';
+echo '<th>' . _COMMENT .'</th>';
+echo '</tr></thead>';
+
+for ($i = 0; $i <= ( $sondes - 1 ); $i++) {
+	echo '<tbody><tr>';
+ 	echo '<td>'. $result[$i]['last_date'] . '</td>';
+	echo '<td>'. $result[$i]['station'] . '</td>';
+	echo '<td>'. $result[$i]['callsign'] . '</td>';
+	echo '<td>'. $result[$i]['time'] . '</td>';
+	echo '<td>'. $result[$i]['freq'] . '</td>';
+    echo '<td>'. $result[$i]['lat'] . '</td>';
+    echo '<td>'. $result[$i]['lon'] . '</td>';
+    echo '<td>'. $result[$i]['sats'] . '</td>';
+	echo '<td>'. _Rounding($result[$i]['alt'],1) . '</td>';
+	echo '<td>'. $result[$i]['direction'] . '</td>';
+	echo '<td>'. _Rounding($result[$i]['distance'],1) . '</td>';
+    echo '<td>'. $result[$i]['speed'] . '</td>';
+    echo '<td>'. $result[$i]['bt'] . '</td>';
+    echo '<td>'. $result[$i]['temp'] . '</td>';
+    echo '<td>'. $result[$i]['hum'] . '</td>';
+    echo '<td>'. $result[$i]['batt'] . '</td>';
+    echo '<td>'. $result[$i]['evel'] . '</td>';
+    echo '<td>'. $result[$i]['bear'] . '</td>';
+    echo '<td>'. $result[$i]['comment'] . '</td>';
+	echo '</tr></tbody>';
+}
+echo '</table>';
+}
 
 function TableLatestSondes($si) {
 global $dbt;
