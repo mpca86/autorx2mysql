@@ -70,6 +70,19 @@ class MyDb {
         return $rows;
     }
 
+	public function getlatestSondesalldata($number) {
+	$q = "SELECT * FROM `alldata` ORDER BY `last_date` DESC LIMIT " . $number;
+		
+        $rows = array();
+        $result = $this -> query($q);
+        if($result === false) {
+            return false;
+        }
+        while ($row = $result -> fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
     /**
      * Fetch one row  from the database (SELECT query)
      *
