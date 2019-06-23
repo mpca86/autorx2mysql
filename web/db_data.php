@@ -78,6 +78,10 @@ for ($i = 0; $i <= ( $sondes - 1 ); $i++) {
 echo '</table>';
 }
 
+
+function Tabl($si) {
+global $dbt;
+
 $result = $dbt -> getlatestSondesalldata($si);
 $sondes = count($result); 
 
